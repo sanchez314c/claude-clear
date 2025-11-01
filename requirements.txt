@@ -1,0 +1,17 @@
+# Claude Clear Dependencies
+# Core dependencies for Claude Clear functionality
+
+# CLI framework for command-line interface
+click>=8.0.0
+
+# YAML configuration file support
+PyYAML>=6.0
+
+# Optional: Enhanced JSON processing (future use)
+# orjson>=3.8.0
+
+# Optional: System monitoring (future use)
+# psutil>=5.9.0
+
+# Optional: Cryptographic operations (future use)
+# cryptography>=3.4.8

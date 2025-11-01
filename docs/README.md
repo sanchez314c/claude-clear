@@ -36,9 +36,29 @@ curl -fsSL https://raw.githubusercontent.com/yourusername/claude-clear/main/inst
 
 ## 🛠️ Usage
 
+Claude Clear can be used in two ways:
+
+### 1. Automatic Service Mode (Recommended)
+After installation, Claude Clear runs automatically every 24 hours:
+
 ```bash
-# Run cleanup
-claude-clear
+# Installation enables automatic service
+./install-enhanced.sh
+
+# Check if service is running
+claude-clear --status
+```
+
+### 2. Manual Script Mode
+Run Claude Clear on-demand without installing the service:
+
+```bash
+# Using the provided launch scripts
+./run-cc-macos.sh    # On macOS
+./run-cc-linux.sh    # On Linux
+
+# Or run directly with Python
+python3 bin/claude-clear.py
 
 # Check status
 claude-clear --status
@@ -58,14 +78,31 @@ claude-clear --uninstall
 
 ## 📦 Installation Options
 
-### Standard Install
+### Option 1: Manual Mode (Quick Start)
+No installation required - just clone and run:
+```bash
+git clone https://github.com/yourusername/claude-clear.git
+cd claude-clear
+
+# Run immediately
+./run-cc-macos.sh    # On macOS
+./run-cc-linux.sh    # On Linux
+
+# Or with Python directly
+python3 bin/claude-clear.py
+```
+
+### Option 2: Automatic Service Install
+Install as a system service for automatic cleaning:
+
+#### Standard Install
 ```bash
 git clone https://github.com/yourusername/claude-clear.git
 cd claude-clear
 ./install.sh
 ```
 
-### Enhanced Install (Recommended)
+#### Enhanced Install (Recommended)
 The enhanced installer includes additional checks and fallbacks for problematic systems:
 ```bash
 ./install-enhanced.sh
@@ -81,7 +118,7 @@ After installing, verify everything is working correctly:
 
 Having trouble? We've got you covered:
 
-- **[📖 TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Comprehensive troubleshooting guide
+- **[📖 docs/troubleshooting.md](docs/troubleshooting.md)** - Comprehensive troubleshooting guide
 - **[✅ verify-install.sh](verify-install.sh)** - Automated installation checker
 
 ### Common Issues
@@ -116,28 +153,55 @@ claude-clear/
 │   └── claude-clear.py    # Main CLI interface
 ├── src/
 │   └── cleaner.py         # Core cleanup logic
+├── scripts/
+│   ├── install.sh         # Standard installer
+│   ├── install-enhanced.sh # Enhanced installer with checks
+│   ├── verify-install.sh  # Installation verifier
+│   └── uninstall.sh       # Complete uninstaller
 ├── docs/
-│   └── TROUBLESHOOTING.md # Troubleshooting guide
+│   ├── build.md           # Build instructions
+│   ├── contributing.md    # Contribution guidelines
+│   ├── development.md     # Development guide
+│   ├── security.md        # Security policy
+│   ├── techstack.md       # Technology stack
+│   ├── troubleshooting.md # Troubleshooting guide
+│   └── learnings.md       # Project insights
 ├── tests/
 │   └── test_cleaner.py    # Test suite
 ├── assets/
 │   └── banner.txt         # ASCII art banner
-├── install.sh             # Standard installer
-├── install-enhanced.sh    # Enhanced installer with checks
-├── verify-install.sh      # Installation verifier
-├── uninstall.sh           # Complete uninstaller
+├── .github/
+│   ├── ISSUE_TEMPLATE/    # GitHub issue templates
+│   └── pull_request_template.md
+├── run-cc-macos.sh        # Manual launch script for macOS
+├── run-cc-linux.sh        # Manual launch script for Linux
 ├── LICENSE                # MIT License
+├── CHANGELOG.md           # Version history
+├── CLAUDE.md              # Claude AI assistant context
 ├── Makefile              # Build tasks
 ├── requirements.txt       # Python dependencies
+├── requirements-dev.txt   # Development dependencies
 └── README.md             # This file
 ```
 
-## 🚀 Automatic Cleaning
+## 🚀 Operational Modes
 
-Claude Clear sets up a macOS LaunchAgent that automatically cleans your configuration every 24 hours. The service runs in the background with minimal resource usage.
+### Automatic Service Mode
+When installed, Claude Clear sets up a system service that runs automatically:
+- **macOS**: LaunchAgent runs every 24 hours
+- **Linux**: Systemd service runs every 24 hours
+- **Benefits**: Set it and forget it, always maintains clean config
+- **Resource Usage**: Minimal, runs in background
 
-### Service Details
-- **Name**: `com.claude.cleanup`
+### Manual Script Mode
+Run Claude Clear only when you need it:
+- **No installation required** - just clone and run
+- **Full control** - clean exactly when you want
+- **Portable** - works on any system with Python 3.6+
+- **Same functionality** as automatic mode
+
+### Service Details (Automatic Mode)
+- **Name**: `com.claude.cleanup` (macOS)
 - **Interval**: Every 24 hours
 - **Logs**: `~/.claude-clear/logs/`
 - **Can be disabled**: Run `claude-clear --uninstall`
@@ -150,12 +214,25 @@ Claude Clear sets up a macOS LaunchAgent that automatically cleans your configur
 - **Error handling**: Graceful failure with detailed error messages
 - **Verbose logging**: Track all operations in log files
 
+## 📚 Documentation
+
+- **[📖 docs/build.md](docs/build.md)** - Build and development instructions
+- **[🤝 docs/contributing.md](docs/contributing.md)** - Contribution guidelines
+- **[🔧 docs/development.md](docs/development.md)** - Development guide and architecture
+- **[🔒 docs/security.md](docs/security.md)** - Security policy and considerations
+- **[⚙️ docs/techstack.md](docs/techstack.md)** - Technology stack information
+- **[📈 docs/learnings.md](docs/learnings.md)** - Project insights and learnings
+- **[📋 CHANGELOG.md](CHANGELOG.md)** - Version history and changes
+
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 🤝 Contributing
 
+We welcome contributions! Please see **[📖 docs/contributing.md](docs/contributing.md)** for detailed guidelines.
+
+Quick start:
 1. Fork the repository
 2. Create feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit changes (`git commit -m 'Add amazing feature'`)
