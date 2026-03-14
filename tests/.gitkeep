@@ -1,0 +1,2 @@
+# This file ensures the tests directory is tracked by Git
+# even when no test files are present yet.
