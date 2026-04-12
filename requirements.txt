@@ -1,0 +1,9 @@
+# Claude Clear Dependencies
+#
+# Claude Clear uses only Python standard library modules at runtime.
+# No external packages are required to run the tool.
+#
+# Runtime imports: json, pathlib, datetime, argparse, os, sys,
+#                  subprocess, shutil, logging
+#
+# All are part of Python 3.8+ stdlib.
